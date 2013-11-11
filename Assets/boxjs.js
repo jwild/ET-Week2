@@ -9,12 +9,30 @@ var minY:float=-10;
 
 private var accel:Vector3;
 
+var collided_with: GameObject;
+
+
+var obj: GameObject;
+var score: int = 0;
+
+
 function Start () {
 	accel = Input.acceleration;
 }
 
+function OnGUI(){
+	//GUI.Label(Rect(0,0,Screen.width,Screen.height), "SCORE: 0");
+	GUI.Label(Rect(100,20,300,100), "SCORE: "+score);
+}
+
 function Update () {
 	Screen.sleepTimeout = SleepTimeout.NeverSleep;
+	
+	if(collided_with != null){
+		if(collided_with.tag == "Top" || collided_with.tag == "Bottom" || collided_with.tag == "Left" || collided_with.tag == "Right"){
+			closeGame();
+		}
+	}
 	
 	accel = Vector3.Lerp(accel, Input.acceleration, filter*Time.deltaTime);
 	
@@ -30,4 +48,59 @@ function Update () {
 	pos.y = Mathf.Clamp(pos.y, minY, maxY);
 	
 	transform.position = pos;
+	
+	if(Input.GetAxis("Horizontal") > 0){
+		if(collided_with != null){
+			if(collided_with.tag == "Right"){
+				return;
+			}
+		}
+		transform.Translate(Vector3(1 * speed * Time.deltaTime,0,0));
+	}
+	
+	if(Input.GetAxis("Horizontal") < 0){
+		if(collided_with != null){
+			if(collided_with.tag == "Left"){
+				return;
+			}
+		}
+		transform.Translate(Vector3(-1 * speed * Time.deltaTime,0,0));
+	}
+	
+	if(Input.GetAxis("Vertical") < 0){
+		if(collided_with != null){
+			if(collided_with.tag == "Top"){
+				return;
+			}
+		}
+		transform.Translate(Vector3(0,-1 * speed * Time.deltaTime,0));
+	}
+	if(Input.GetAxis("Vertical") > 0){
+		if(collided_with != null){
+			if(collided_with.tag == "Bottom"){
+				return;
+			}
+		}
+		transform.Translate(Vector3(0,1 * speed * Time.deltaTime,0));
+	}
+}
+
+function OnCollisionEnter(col:Collision){
+	collided_with = col.gameObject;
+	//if(collided_with == "yummy"){
+		//GUI.Label(Rect(100,20,300,100), "SCORE: 223");
+		//guiText.text = "test";
+	//}
+	//referencetotext.text = "tttttt";
+	//obj = GameObject.Find("TESTNAME");
+	//obj.guiText.text = "wtf";
+	score++;
+}
+
+function OnCollisionExit(col:Collision){
+	collided_with = null;
+}
+
+function closeGame(){
+	
 }
