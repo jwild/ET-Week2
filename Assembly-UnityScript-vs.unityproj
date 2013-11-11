@@ -46,6 +46,9 @@
   <ItemGroup>
      <Compile Include="Assets\boxjs.js" />
      <Compile Include="Assets\chompjs.js" />
+     <Compile Include="Assets\endgame.js" />
+     <Compile Include="Assets\mainmenu.js" />
+     <Compile Include="Assets\wingame.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

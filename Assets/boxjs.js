@@ -10,9 +10,6 @@ var minY:float=-10;
 private var accel:Vector3;
 
 var collided_with: GameObject;
-
-
-var obj: GameObject;
 var score: int = 0;
 
 
@@ -87,14 +84,11 @@ function Update () {
 
 function OnCollisionEnter(col:Collision){
 	collided_with = col.gameObject;
-	//if(collided_with == "yummy"){
-		//GUI.Label(Rect(100,20,300,100), "SCORE: 223");
-		//guiText.text = "test";
-	//}
-	//referencetotext.text = "tttttt";
-	//obj = GameObject.Find("TESTNAME");
-	//obj.guiText.text = "wtf";
+	
 	score++;
+	if(score >= 44){
+		Application.LoadLevel("WinGame");
+	}
 }
 
 function OnCollisionExit(col:Collision){
@@ -102,5 +96,5 @@ function OnCollisionExit(col:Collision){
 }
 
 function closeGame(){
-	
+	Application.LoadLevel("EndGame");
 }

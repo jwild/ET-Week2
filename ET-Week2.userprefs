@@ -2,7 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/boxjs.js">
     <Files>
-      <File FileName="Assets/boxjs.js" Line="3" Column="19" />
+      <File FileName="Assets/boxjs.js" Line="98" Column="32" />
+      <File FileName="Assets/chompjs.js" Line="1" Column="1" />
+      <File FileName="Assets/mainmenu.js" Line="14" Column="3" />
+      <File FileName="Assets/endgame.js" Line="12" Column="57" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
